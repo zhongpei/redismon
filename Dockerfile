@@ -2,6 +2,8 @@ FROM python:2.7
 
 COPY requirements.txt /requirements.txt
 RUN pip install --no-cache-dir --retries 50 -r requirements.txt -i https://pypi.douban.com/simple/ --trusted-host pypi.douban.com
+
+RUN sed -i "s/http:\/\/deb\.debian\.org/http:\/\/mirrors.163.com/" /etc/apt/sources.list
 RUN apt-get update && apt-get -y install cron
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
