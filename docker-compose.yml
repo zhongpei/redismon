@@ -1,0 +1,11 @@
+version:  '2.3'
+
+services:
+    redismon:
+      image: zhongpei/redismon
+      network_mode: "host"
+      restart: always
+      volumes:
+        - ./log:/log
+      environment:
+        TZ: 'Asia/Shanghai'
