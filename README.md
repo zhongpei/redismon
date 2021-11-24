@@ -9,31 +9,30 @@ Redis monitor plugin for Open-Falcon
 
 暂不支持Sentinel(哨兵)的监控
 
-环境需求
+环境需求(docker)
 -----------------
-操作系统: Linux
+```
 
-Python > 2.6
+make
 
-PyYAML > 3.10
+docker run 'zhongpei/redismon'
 
-redis-py > 2.10
-
-python-requests > 0.11
-
+```
 redismon部署
 --------------------------
-1 目录解压到/path/to/redismon 
+* 1 目录解压到/path/to/redismon 
 
-2 配置当前服务器的Redis多实例信息,/path/to/redismon/conf/redismon.conf 每行记录一个实例: 集群名，密码，端口
+* 2 配置当前服务器的Redis多实例信息,/path/to/redismon/conf/redismon.conf 每行记录一个实例: 集群名，密码，端口
 
-- {cluster_name: cluster_1, password: '', port: 6379}
+```
+	- {cluster_name: cluster_1, password: '', port: 6379}
+```
 
-3 配置crontab, 修改redismon_cron文件中redismon安装path; cp redismon_cron /etc/cron.d/ 
+* 3 配置crontab, 修改redismon_cron文件中redismon安装path; cp redismon_cron /etc/cron.d/ 
 
-4 查看日志文件/path/to/redismon/log/redismon.log, 如无异常信息，表示采集正常；几分钟后，可从open-falcon的dashboard中查看redis metric
+* 4 查看日志文件/path/to/redismon/log/redismon.log, 如无异常信息，表示采集正常；几分钟后，可从open-falcon的dashboard中查看redis metric
 
-5 endpoint默认是hostname
+* 5 endpoint默认是hostname
 
 采集的Redis指标
 ----------------------------------------
